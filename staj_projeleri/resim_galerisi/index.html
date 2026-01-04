@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Resim Galerisi</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        .galeri { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
+        .resim { width: 160px; border: 1px solid #ccc; padding: 5px; text-align: center; }
+        .resim img { width: 100%; }
+        button { margin-top: 5px; width: 100%; }
+    </style>
+</head>
+<body>
+
+<h2>Resim Galerisi</h2>
+
+<input type="file" id="resim" accept="image/*"><br><br>
+<input type="text" id="kategori" placeholder="Kategori (Tatil, Okul vb.)"><br><br>
+<button onclick="resimYukle()">Resmi Yükle</button>
+
+<h3>Galeri</h3>
+<div id="galeri" class="galeri"></div>
+
+<script>
+function resimYukle() {
+    let dosya = document.getElementById("resim").files[0];
+    let kategori = document.getElementById("kategori").value;
+
+    if (!dosya || kategori === "") {
+        alert("Resim ve kategori seçiniz");
+        return;
+    }
+
+    let reader = new FileReader();
+    reader.onload = function (e) {
+        let resimler = JSON.parse(localStorage.getItem("resimler")) || [];
+        resimler.push({ src: e.target.result, kategori: kategori });
+        localStorage.setItem("resimler", JSON.stringify(resimler));
+        galeriyiGoster();
+    };
+    reader.readAsDataURL(dosya);
+
+    document.getElementById("resim").value = "";
+    document.getElementById("kategori").value = "";
+}
+
+function galeriyiGoster() {
+    let galeri = document.getElementById("galeri");
+    galeri.innerHTML = "";
+
+    let resimler = JSON.parse(localStorage.getItem("resimler")) || [];
+
+    resimler.forEach((r, index) => {
+        galeri.innerHTML += `
+            <div class="resim">
+                <img src="${r.src}">
+                <p>${r.kategori}</p>
+                <button onclick="resimSil(${index})">Sil</button>
+            </div>
+        `;
+    });
+}
+
+function resimSil(index) {
+    let resimler = JSON.parse(localStorage.getItem("resimler")) || [];
+    resimler.splice(index, 1);
+    localStorage.setItem("resimler", JSON.stringify(resimler));
+    galeriyiGoster();
+}
+
+galeriyiGoster();
+</script>
+
+</body>
+</html>

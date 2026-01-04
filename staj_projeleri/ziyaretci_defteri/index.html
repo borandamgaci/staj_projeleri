@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ziyaretçi Defteri</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        input, textarea, button { width: 100%; margin-top: 10px; padding: 8px; }
+        .mesaj { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
+        .btn { margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+<h2>Ziyaretçi Defteri</h2>
+
+<input type="text" id="ad" placeholder="Adınız">
+<textarea id="mesaj" placeholder="Mesajınız"></textarea>
+<button onclick="mesajEkle()">Mesaj Gönder</button>
+
+<h3>Onay Bekleyen Mesajlar</h3>
+<div id="bekleyen"></div>
+
+<h3>Yayınlanan Mesajlar</h3>
+<div id="yayinda"></div>
+
+<script>
+function mesajEkle() {
+    let ad = document.getElementById("ad").value;
+    let mesaj = document.getElementById("mesaj").value;
+
+    if (ad === "" || mesaj === "") {
+        alert("Lütfen tüm alanları doldurun");
+        return;
+    }
+
+    let div = document.createElement("div");
+    div.className = "mesaj";
+    div.innerHTML = "<strong>" + ad + "</strong><p>" + mesaj + "</p>";
+
+    // Onayla butonu
+    let onayBtn = document.createElement("button");
+    onayBtn.innerText = "Onayla";
+    onayBtn.className = "btn";
+    onayBtn.onclick = function () {
+        onayBtn.remove();
+        redBtn.remove();
+        document.getElementById("yayinda").appendChild(div);
+    };
+
+    // Reddet butonu
+    let redBtn = document.createElement("button");
+    redBtn.innerText = "Reddet";
+    redBtn.className = "btn";
+    redBtn.onclick = function () {
+        div.remove();
+    };
+
+    div.appendChild(onayBtn);
+    div.appendChild(redBtn);
+    document.getElementById("bekleyen").appendChild(div);
+
+    document.getElementById("ad").value = "";
+    document.getElementById("mesaj").value = "";
+}
+</script>
+
+</body>
+</html>
