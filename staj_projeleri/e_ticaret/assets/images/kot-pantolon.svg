@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e0e7ff"/>
+  <path d="M155 70 L245 70 L250 220 L200 180 L150 220 Z" fill="#4338ca"/>
+  <text x="200" y="260" text-anchor="middle" fill="#3730a3" font-family="sans-serif" font-size="14" font-weight="bold">Kot Pantolon</text>
+</svg>

@@ -1,0 +1,211 @@
+/* E-Ticaret Ürün Kataloğu - Stil Dosyası */
+
+:root {
+    --renk-birincil: #2563eb;
+    --renk-birincil-koyu: #1d4ed8;
+    --renk-arka: #f8fafc;
+    --renk-kart: #ffffff;
+    --renk-metin: #1e293b;
+    --renk-metin-acik: #64748b;
+    --renk-kenar: #e2e8f0;
+    --golge: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --golge-buyuk: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --yaricap: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--renk-arka);
+    color: var(--renk-metin);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Üst başlık */
+.header {
+    background: linear-gradient(135deg, var(--renk-birincil) 0%, var(--renk-birincil-koyu) 100%);
+    color: white;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: var(--golge);
+}
+
+.header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.header p {
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+/* Ana içerik */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* Kategori filtreleri */
+.filtre-alani {
+    background: var(--renk-kart);
+    border-radius: var(--yaricap);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--golge);
+    border: 1px solid var(--renk-kenar);
+}
+
+.filtre-alani h2 {
+    font-size: 1rem;
+    color: var(--renk-metin-acik);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.kategori-butonlari {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.kategori-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--renk-metin);
+    background: var(--renk-arka);
+    border: 1px solid var(--renk-kenar);
+    transition: all 0.2s ease;
+}
+
+.kategori-btn:hover {
+    background: #e0e7ff;
+    border-color: var(--renk-birincil);
+    color: var(--renk-birincil);
+}
+
+.kategori-btn.aktif {
+    background: var(--renk-birincil);
+    color: white;
+    border-color: var(--renk-birincil);
+}
+
+/* Sonuç bilgisi */
+.sonuc-bilgi {
+    margin-bottom: 1.5rem;
+    color: var(--renk-metin-acik);
+    font-size: 0.95rem;
+}
+
+.sonuc-bilgi strong {
+    color: var(--renk-metin);
+}
+
+/* Ürün grid */
+.urun-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Ürün kartı */
+.urun-kart {
+    background: var(--renk-kart);
+    border-radius: var(--yaricap);
+    overflow: hidden;
+    box-shadow: var(--golge);
+    border: 1px solid var(--renk-kenar);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.urun-kart:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--golge-buyuk);
+}
+
+.urun-resim {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #f1f5f9;
+}
+
+.urun-bilgi {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.urun-kategori {
+    font-size: 0.75rem;
+    color: var(--renk-birincil);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.urun-ad {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--renk-metin);
+}
+
+.urun-fiyat {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--renk-birincil);
+    margin-top: auto;
+}
+
+/* Boş durum */
+.bos-durum {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--renk-kart);
+    border-radius: var(--yaricap);
+    border: 2px dashed var(--renk-kenar);
+    color: var(--renk-metin-acik);
+}
+
+.bos-durum p {
+    font-size: 1.1rem;
+}
+
+/* Alt bilgi */
+.footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    color: var(--renk-metin-acik);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--renk-kenar);
+    margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 1.4rem;
+    }
+
+    .urun-grid {
+        grid-template-columns: 1fr;
+    }
+}
